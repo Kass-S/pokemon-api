@@ -6,10 +6,27 @@ const GetPokemon = async (userSearch: string) => {
         alert("Invalid. Please enter a pokemon from gens 1-5");
     }else{
         const data: GetPokemonInterface = await response.json();
-        console.log(data);
         return data;
     }
     
 }
 
-export {GetPokemon}
+const GetEvolutionChain = async (url: string) =>{
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+const GetEvolutionLine = async (pkmnId: number) => {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pkmnId}`);
+    const data = await response.json();
+    console.log(data.evolution_chain.url);
+    let evoChainUrl = data.evolution_chain.url;
+
+    let evoChain = await GetEvolutionChain(evoChainUrl);
+    console.log(evoChain.chain.species.name);
+    return evoChain;
+}
+
+
+export {GetPokemon, GetEvolutionLine}

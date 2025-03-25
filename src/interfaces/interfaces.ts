@@ -31,3 +31,25 @@ interface Moves {
         name: string
     }
 }
+
+export interface GetEvolutionChainInterface {
+    chain: {
+        evolves_to : EvolvesTo[]
+    },
+    species: {
+        name: string
+    }
+}
+
+interface EvolvesTo {
+    species: {
+        name: string
+    }
+    evolves_to: EvolvesMore[]
+}
+
+interface EvolvesMore {
+    species: {
+        name: string
+    }
+}

@@ -2,7 +2,7 @@
 import AbilityCard from "@/components/AbilityCard";
 import EvolotionCard from "@/components/EvolotionCard";
 import ImageCard from "@/components/ImageCard";
-import { GetPokemon } from "@/lib/service";
+import { GetEvolutionLine, GetPokemon } from "@/lib/service";
 import { useEffect } from "react";
 
 
@@ -10,10 +10,12 @@ export default function Home() {
   
 
   useEffect(()=>{
-    const test = async () => {
-      await GetPokemon('pikachu');
+    const AllPokemon = async () => {
+      const pkmnData = await GetPokemon('eevee');
+      const pkmonEvoLine = await GetEvolutionLine(pkmnData.id);
+
     }
-    test()
+    AllPokemon();
   },[])
   return (
     <div className="bg-[url(/assets/bgPkmn.png)] bg-no-repeat bg-cover min-h-screen min-w-screen float-left font-imprima">
