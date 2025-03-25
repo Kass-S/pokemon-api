@@ -2,7 +2,7 @@ import React from 'react'
 
 const AbilityCard = () => {
   return (
-    <div>AbilityCard</div>
+    <div className='bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg'>AbilityCard</div>
   )
 }
 

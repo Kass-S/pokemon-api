@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face{
+  font-family: "Imprima";
+  src: url(/Assets/fonts/Imprima-Regular.ttf);
+}
+.font-imprima{
+  font-family: "Imprima", Arial, Helvetica, sans-serif;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
