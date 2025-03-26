@@ -9,12 +9,12 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [pkmnName, setPkmnName] = useState<string>('pikachu');
   const [pkmnId, setPkmnId] = useState<number>(25);
-  const [pkmnImg, setPkmnImg] = useState<string>('');
-  const [pkmnTypes, setPkmnTypes] = useState<string>('');
-  const [pkmnAbilities, setPkmnAbilities] = useState<string>('');
-  const [pkmnMoves, setPkmnMoves] = useState<string>('');
-  const [pkmnEvoLine, setPkmnEvoLine] = useState<string>('');
-  const [pkmnLocation, setPkmnLocation] = useState<string>('');
+  const [pkmnImg, setPkmnImg] = useState<string>('image');
+  const [pkmnTypes, setPkmnTypes] = useState<string>('types');
+  const [pkmnAbilities, setPkmnAbilities] = useState<string>('abilities');
+  const [pkmnMoves, setPkmnMoves] = useState<string>('moves');
+  const [pkmnEvoLine, setPkmnEvoLine] = useState<string>('evolution line');
+  const [pkmnLocation, setPkmnLocation] = useState<string>('location');
   
 
   useEffect(()=>{

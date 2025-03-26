@@ -4,7 +4,7 @@ import React from 'react'
 const ImageCard: React.FC<ImgCompInterface> = ({name, id, image}) => {
   return (
     <div className='bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg min-h-[28.6rem] max-h-[28.6rem]'>
-        <div className="max-w-80 flex justify-center">
+        <div className="max-w-80 flex justify-self-center">
             <img src={image} alt="pokemon image" className="h-60 bg-blue-800 drop-shadow-lg rounded-lg w-100% m-5" />
         </div>
                     
