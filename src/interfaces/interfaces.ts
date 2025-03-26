@@ -9,27 +9,15 @@ export interface GetPokemonInterface {
             }
         }
     }
-    types: Types[],
-    abilities: Abilities[];
-    moves: Moves[]
-}
-
-interface Types {
-    type: {
+    types: {type: {
         name: string
-    }
-}
-
-interface Abilities {
-    ability: {
+    }}[],
+    abilities: {ability: {
         name: string
-    }
-}
-
-interface Moves {
-    move: {
+    }}[],
+    moves: {move: {
         name: string
-    }
+    }}[]
 }
 
 export interface GetEvolutionChainInterface {
@@ -37,21 +25,14 @@ export interface GetEvolutionChainInterface {
         species: {
             name: string
         },
-        evolves_to : EvolvesTo[]
+        evolves_to : {species: {
+            name: string
+        },
+        evolves_to: {species: {
+            name: string
+        }}[]
+        }[]
     },    
-}
-
-interface EvolvesTo {
-    species: {
-        name: string
-    }
-    evolves_to: EvolvesMore[]
-}
-
-interface EvolvesMore {
-    species: {
-        name: string
-    }
 }
 
 export interface GetEvolutionLineInterface {
@@ -62,6 +43,23 @@ export interface GetEvolutionLineInterface {
 
 export interface GetLocationInterface {
     location_area: {
-        name: string
+        name: string[]
     }
+}
+
+export interface ImgCompInterface {
+    name: string,
+    id: number,
+    image: string,   
+}
+
+export interface AbilityCompInterface {   
+    abilities: string,
+    moves: string,
+}
+
+export interface EvolutionCardInterface {
+    types: string,
+    evolutionLine: string,
+    location: string
 }
