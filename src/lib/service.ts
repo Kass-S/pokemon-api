@@ -1,4 +1,4 @@
-import { GetEvolutionChainInterface, GetPokemonInterface } from "@/interfaces/interfaces";
+import { GetEvolutionChainInterface, GetEvolutionLineInterface, GetLocationInterface, GetPokemonInterface } from "@/interfaces/interfaces";
 
 const GetPokemon = async (userSearch: string) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
@@ -6,7 +6,11 @@ const GetPokemon = async (userSearch: string) => {
         alert("Invalid. Please enter a pokemon from gens 1-5");
     }else{
         const data: GetPokemonInterface = await response.json();
-        return data;
+        if(data.id >= 650){
+            alert("Invalid. Please enter a pokemon from gens 1-5");
+        }else{
+            return data;
+        }    
     }
     
 }
@@ -18,8 +22,7 @@ const GetEvolutionChain = async (url: string) =>{
 }
 const GetEvolutionLine = async (pkmnId: number) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pkmnId}`);
-    const data = await response.json();
-    console.log(data);
+    const data: GetEvolutionLineInterface = await response.json();
     let evoChainUrl = data.evolution_chain.url;
 
     let evoChain = await GetEvolutionChain(evoChainUrl);
@@ -28,4 +31,17 @@ const GetEvolutionLine = async (pkmnId: number) => {
 }
 
 
-export {GetPokemon, GetEvolutionLine}
+const GetLocation = async (pkmnId: number) => {
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pkmnId}/encounters`)
+        const data: GetLocationInterface[] = await response.json();
+        let location = data[0].location_area.name;
+        return location;
+    } catch (error) {
+        console.error("N/A")
+        return "N/A";
+    }
+    
+}
+
+export {GetPokemon, GetEvolutionLine, GetLocation }

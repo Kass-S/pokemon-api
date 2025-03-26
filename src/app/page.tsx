@@ -2,18 +2,37 @@
 import AbilityCard from "@/components/AbilityCard";
 import EvolotionCard from "@/components/EvolotionCard";
 import ImageCard from "@/components/ImageCard";
-import { GetEvolutionLine, GetPokemon } from "@/lib/service";
-import { useEffect } from "react";
+import { GetEvolutionLine, GetLocation, GetPokemon } from "@/lib/service";
+import { useEffect, useState } from "react";
 
 
 export default function Home() {
+  const [pkmnName, setPkmnName] = useState<string>('pikachu');
+  const [pkmnId, setPkmnId] = useState<number>(25);
+  const [pkmnImg, setPkmnImg] = useState<string>();
+  const [pkmnTypes, setPkmnTypes] = useState<string>("");
   
 
   useEffect(()=>{
     const AllPokemon = async () => {
-      const pkmnData = await GetPokemon('eevee');
-      const pkmonEvoLine = await GetEvolutionLine(pkmnData.id);
+      const pkmnData = await GetPokemon(pkmnName);
+      if(pkmnData != undefined){
+        let typeList: string[] = []
 
+        const pkmnEvoLine = await GetEvolutionLine(pkmnData.id);
+        const pknmLocation = await GetLocation(pkmnData.id);
+
+        setPkmnImg(pkmnData.name);
+        setPkmnId(pkmnData.id);
+        setPkmnImg(pkmnData.sprites.other["official-artwork"].front_default);
+
+        for(let i: number = 0; i < pkmnData.types.length; i++){
+          typeList.push(pkmnData.types[i].type.name);
+        }
+        setPkmnTypes(typeList.join(", "));
+
+
+      }  
     }
     AllPokemon();
   },[])

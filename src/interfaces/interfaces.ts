@@ -53,3 +53,15 @@ interface EvolvesMore {
         name: string
     }
 }
+
+export interface GetEvolutionLineInterface {
+    evolution_chain: {
+        url: string
+    }
+}
+
+export interface GetLocationInterface {
+    location_area: {
+        name: string
+    }
+}
