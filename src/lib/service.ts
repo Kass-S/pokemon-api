@@ -1,4 +1,4 @@
-import { GetPokemonInterface } from "@/interfaces/interfaces";
+import { GetEvolutionChainInterface, GetPokemonInterface } from "@/interfaces/interfaces";
 
 const GetPokemon = async (userSearch: string) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
@@ -13,14 +13,13 @@ const GetPokemon = async (userSearch: string) => {
 
 const GetEvolutionChain = async (url: string) =>{
     const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
+    const data: GetEvolutionChainInterface = await response.json();
     return data;
 }
 const GetEvolutionLine = async (pkmnId: number) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pkmnId}`);
     const data = await response.json();
-    console.log(data.evolution_chain.url);
+    console.log(data);
     let evoChainUrl = data.evolution_chain.url;
 
     let evoChain = await GetEvolutionChain(evoChainUrl);

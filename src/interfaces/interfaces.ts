@@ -34,11 +34,11 @@ interface Moves {
 
 export interface GetEvolutionChainInterface {
     chain: {
+        species: {
+            name: string
+        },
         evolves_to : EvolvesTo[]
-    },
-    species: {
-        name: string
-    }
+    },    
 }
 
 interface EvolvesTo {
