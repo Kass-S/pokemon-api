@@ -10,6 +10,7 @@ import { faMagnifyingGlass, faHeart, faShuffle } from "@fortawesome/free-solid-s
 
 export default function Home() {
   const [pkmnInput, setPkmnInput] = useState<string | number>('pikachu');
+  const [random, setRandom] = useState<number>(0);
   const [pkmnName, setPkmnName] = useState<string>('');
   const [pkmnId, setPkmnId] = useState<number>(25);
   const [pkmnImg, setPkmnImg] = useState<string>('image');
@@ -22,6 +23,7 @@ export default function Home() {
   
 
   const AllPokemon = async () => {
+    
     const pkmnData = await GetPokemon(pkmnInput);
     if(pkmnData != undefined){
       if(pkmnData.id < 650){
@@ -33,7 +35,7 @@ export default function Home() {
         const pkmnEvoLine = await GetEvolutionLine(pkmnData.id);
         const pkmnLocation = await GetLocation(pkmnData.id);
 
-        setPkmnName(pkmnData.name);
+        setPkmnName(pkmnData.species.name);
         setPkmnId(pkmnData.id);
         setPkmnImg(pkmnData.sprites.other["official-artwork"].front_default);
         setShinyImg(pkmnData.sprites.other["official-artwork"].front_shiny);
@@ -58,25 +60,29 @@ export default function Home() {
           if(pkmnEvoLine.chain.evolves_to.length > 0){
 
             for(let i: number = 0; i < pkmnEvoLine.chain.evolves_to.length; i++){
+              if(pkmnEvoLine.chain.evolves_to[i].species.name == 'basculegion'){
+                setPkmnEvoLine("N/A");
+              }else{
+                const evoLineCheck = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].species.name);
+                if(evoLineCheck != undefined){
+                  if(evoLineCheck.id < 650){
+                    evoList.push(pkmnEvoLine.chain.evolves_to[i].species.name);
+                  }
 
-              const evoLineCheck = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].species.name);
-              if(evoLineCheck != undefined){
-                if(evoLineCheck.id < 650){
-                  evoList.push(pkmnEvoLine.chain.evolves_to[i].species.name);
-                }
+                  if(pkmnEvoLine.chain.evolves_to[i].evolves_to.length > 0){
+                    for(let j: number = 0; j < pkmnEvoLine.chain.evolves_to[i].evolves_to.length; j++){
 
-                if(pkmnEvoLine.chain.evolves_to[i].evolves_to.length > 0){
-                  for(let j: number = 0; j < pkmnEvoLine.chain.evolves_to[i].evolves_to.length; j++){
-
-                    const evoLineCheck2 = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
-                    if(evoLineCheck2 != undefined){
-                      if(evoLineCheck2.id < 650){
-                        evoList.push(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
-                      }
-                    }   
+                      const evoLineCheck2 = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
+                      if(evoLineCheck2 != undefined){
+                        if(evoLineCheck2.id < 650){
+                          evoList.push(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
+                        }
+                      }   
+                    }
                   }
                 }
               }
+              
             }
             setPkmnEvoLine(pkmnEvoLine.chain.species.name + " - " + evoList.join(" - "));
           }else{
@@ -97,13 +103,14 @@ export default function Home() {
           }
         }
       }else{
-        alert("Invalid. Please enter a pokemon from gens 1-5");
+        alert("Invalid. Please enter a pokemon from gens 1-5, or use pokedex number");
       }
     }  
   }
 
   const RandomPokemon = async () =>{
     setPkmnInput(Math.floor(Math.random() * 649));
+    setRandom(Math.floor(Math.random() * 649));
   }
 
   useEffect(()=>{ 
@@ -112,7 +119,7 @@ export default function Home() {
 
   useEffect(() => {
     AllPokemon();
-  }, [pkmnInput])
+  }, [random])
   return (
     <div className="bg-[url(/assets/bgPkmn.png)] bg-no-repeat bg-cover min-h-screen min-w-screen float-left font-imprima">
       {/* <!-- drawer component --> */}

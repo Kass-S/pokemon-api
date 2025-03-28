@@ -3,7 +3,7 @@ import { GetEvolutionChainInterface, GetEvolutionLineInterface, GetLocationInter
 const GetPokemon = async (userSearch: string | number) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     if(!response.ok){
-        alert("Invalid. Please enter a pokemon from gens 1-5");
+        alert("Invalid. Please enter a pokemon from gens 1-5, or use pokedex number");
     }else{
         const data: GetPokemonInterface = await response.json();
         return data;   

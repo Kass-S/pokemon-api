@@ -1,6 +1,7 @@
 export interface GetPokemonInterface {
     id: number,
     name: string,
+    species: {name: string};
     sprites: {
         other: {
             "official-artwork": {
@@ -8,7 +9,7 @@ export interface GetPokemonInterface {
                 front_shiny: string
             }
         }
-    }
+    },
     types: {type: {
         name: string
     }}[],
@@ -56,7 +57,7 @@ export interface ImgCompInterface {
 
 export interface AbilityCompInterface {   
     abilities: string,
-    moves: string,
+    moves: string
 }
 
 export interface EvolutionCardInterface {
