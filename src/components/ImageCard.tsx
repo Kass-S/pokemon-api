@@ -9,7 +9,6 @@ const ImageCard: React.FC<ImgCompInterface> = ({name, id, image, shinyImage}) =>
 
   const handleSwitch = () => {
     setShinyBool(!shinyBool);
-
   }
   
   return (

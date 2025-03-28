@@ -104,13 +104,15 @@ export default function Home() {
 
   const RandomPokemon = async () =>{
     setPkmnInput(Math.floor(Math.random() * 649));
-    await AllPokemon();
   }
 
-  useEffect(()=>{
-    
+  useEffect(()=>{ 
     AllPokemon();
   },[])
+
+  useEffect(() => {
+    AllPokemon();
+  }, [pkmnInput])
   return (
     <div className="bg-[url(/assets/bgPkmn.png)] bg-no-repeat bg-cover min-h-screen min-w-screen float-left font-imprima">
       {/* <!-- drawer component --> */}
