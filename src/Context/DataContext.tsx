@@ -9,7 +9,7 @@ interface DataInterface {
 
 const PkmnContext = createContext<DataInterface>({
     fav: '',
-    setFav: (pkmnName) => ''
+    setFav: () => ''
 });
 
 export function AppWrapper({ children }: { children: React.ReactNode }){

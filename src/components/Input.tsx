@@ -2,7 +2,6 @@ import { usePkmncontext } from '@/Context/DataContext';
 import React from 'react'
 
 const Input = () => {
-  const {name, setName} = usePkmncontext();
   return (
     <div className="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4">
 
