@@ -11,7 +11,7 @@ const EvolotionCard: React.FC<EvolutionCardInterface> = ({types, evolutionLine, 
         <p className="flex justify-center text-xl my-5 mx-5">{evolutionLine}</p>
     
         <p className="flex justify-center text-3xl mt-10">Location:</p>
-        <p className="flex justify-center text-xl m-5">{location}</p>
+        <p className="flex justify-center text-xl m-5 overflow-y-scroll h-33">{location}</p>
     </div>
   )
 }

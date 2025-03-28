@@ -18,8 +18,7 @@ const ImageCard: React.FC<ImgCompInterface> = ({name, id, image, shinyImage}) =>
         <div className="max-w-80 flex justify-self-center">
           {
             shinyBool ? <img src={shinyImage} alt="pokemon image" className="h-60 bg-blue-800 drop-shadow-lg rounded-lg w-100% m-5" /> : <img src={image} alt="pokemon image" className="h-60 bg-blue-800 drop-shadow-lg rounded-lg w-100% m-5" />
-          }
-          
+          }  
         </div>
                     
         <p className="flex justify-center text-3xl mt-10 mx-5">{name} - {id}</p>

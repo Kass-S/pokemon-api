@@ -86,7 +86,11 @@ export default function Home() {
 
         if(pkmnLocation != undefined){
           if(pkmnLocation.length > 0){
-            setPkmnLocation(pkmnLocation);
+            let locationList: string[] = [];
+            for(let i: number = 0; i < pkmnLocation.length; i++){
+              locationList.push(pkmnLocation[i].location_area.name);
+            }
+            setPkmnLocation(locationList.join(" | "));
             
           }else{
             setPkmnLocation("N/A");

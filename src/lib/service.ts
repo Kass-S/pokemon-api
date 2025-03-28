@@ -31,11 +31,9 @@ const GetLocation = async (pkmnId: number) => {
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pkmnId}/encounters`)
         const data: GetLocationInterface[] = await response.json();
-        let location = data[0].location_area.name;
-        return location;
+        return data;
     } catch (error) {
-        console.error("N/A")
-        return "N/A";
+        console.error("N/A");
     }
     
 }
