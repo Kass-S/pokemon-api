@@ -50,7 +50,8 @@ export interface GetLocationInterface {
 export interface ImgCompInterface {
     name: string,
     id: number,
-    image: string,   
+    image: string,
+    shinyImage: string   
 }
 
 export interface AbilityCompInterface {   

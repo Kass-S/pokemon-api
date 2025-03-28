@@ -13,6 +13,7 @@ export default function Home() {
   const [pkmnName, setPkmnName] = useState<string>('');
   const [pkmnId, setPkmnId] = useState<number>(25);
   const [pkmnImg, setPkmnImg] = useState<string>('image');
+  const [shinyImg, setShinyImg] = useState<string>('image');
   const [pkmnTypes, setPkmnTypes] = useState<string>('types');
   const [pkmnAbilities, setPkmnAbilities] = useState<string>('abilities');
   const [pkmnMoves, setPkmnMoves] = useState<string>('moves');
@@ -35,6 +36,7 @@ export default function Home() {
         setPkmnName(pkmnData.name);
         setPkmnId(pkmnData.id);
         setPkmnImg(pkmnData.sprites.other["official-artwork"].front_default);
+        setShinyImg(pkmnData.sprites.other["official-artwork"].front_shiny);
 
         for(let i: number = 0; i < pkmnData.types.length; i++){
           typeList.push(pkmnData.types[i].type.name);
@@ -96,6 +98,11 @@ export default function Home() {
     }  
   }
 
+  const RandomPokemon = async () =>{
+    setPkmnInput(Math.floor(Math.random() * 649));
+    await AllPokemon();
+  }
+
   useEffect(()=>{
     
     AllPokemon();
@@ -111,10 +118,7 @@ export default function Home() {
 
           <input type="text" placeholder=" Search" className="bg-blue-500 rounded-md py-2 xl:pr-25 lg:pr-5 pr-5" onChange={(e) => setPkmnInput(e.target.value)}  />
           
-          <FontAwesomeIcon className="sm:mx-2 cursor-pointer" icon={faShuffle} size="sm" style={{color: "#ffffff",}} onClick={() => {
-            setPkmnInput(Math.floor(Math.random() * 649));
-            AllPokemon();
-          }}/>
+          <FontAwesomeIcon className="sm:mx-2 cursor-pointer" icon={faShuffle} size="sm" style={{color: "#ffffff",}} onClick={RandomPokemon}/>
 
           <button type="button" data-drawer-target="drawer-top-example" data-drawer-show="drawer-top-example" data-drawer-placement="top" aria-controls="drawer-top-example" className="cursor-pointer"><FontAwesomeIcon icon={faHeart} size="sm" style={{color: "#ffffff",}} />
           </button> 
@@ -125,7 +129,7 @@ export default function Home() {
         </div>
 
         <div className="lg:row-[2] lg:col-[2] row-[2] md:col-start-2 md:col-end-4">
-          <ImageCard name={pkmnName} id={pkmnId} image={pkmnImg} />
+          <ImageCard name={pkmnName} id={pkmnId} image={pkmnImg} shinyImage={shinyImg} />
         </div>
 
         <div className="lg:row-[2] lg:col-[3] md:col-start-2 md:col-end-4 row-[3]">
