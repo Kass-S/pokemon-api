@@ -3,7 +3,7 @@ import React from 'react'
 
 const AbilityCard: React.FC<AbilityCompInterface> = ({abilities, moves}) => {
   return (
-    <div className='bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg min-h-[28.6rem] max-h-[28.6rem]'>
+    <div className='bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg min-h-[28.6rem] max-h-[28.6rem] font-imprima'>
         <p className="flex justify-center text-3xl mt-5">Abilities:</p>
         <p className="flex justify-center text-xl mx-5">{abilities}</p>
     

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Input = () => {
   return (
-    <div className="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4">
+    <div className="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4 font-imprima">
 
           <button className="mx-2 cursor-pointer"><i className="fa-solid fa-magnifying-glass fa-sm " ></i></button>
                    
