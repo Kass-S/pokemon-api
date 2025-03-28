@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSprayCanSparkles } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { usePkmncontext } from '@/Context/DataContext';
 
 const ImageCard: React.FC<ImgCompInterface> = ({name, id, image, shinyImage}) => {
   const [shinyBool, setShinyBool] = useState<boolean>(false);

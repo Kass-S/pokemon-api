@@ -25,10 +25,10 @@ export default function Home() {
     const pkmnData = await GetPokemon(pkmnInput);
     if(pkmnData != undefined){
       if(pkmnData.id < 650){
-        let typeList: string[] = [];
-        let abilityList: string[] = [];
-        let moveList: string[] = [];
-        let evoList: string[] = [];
+        const typeList: string[] = [];
+        const abilityList: string[] = [];
+        const moveList: string[] = [];
+        const evoList: string[] = [];
 
         const pkmnEvoLine = await GetEvolutionLine(pkmnData.id);
         const pkmnLocation = await GetLocation(pkmnData.id);
@@ -59,7 +59,7 @@ export default function Home() {
 
             for(let i: number = 0; i < pkmnEvoLine.chain.evolves_to.length; i++){
 
-              let evoLineCheck = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].species.name);
+              const evoLineCheck = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].species.name);
               if(evoLineCheck != undefined){
                 if(evoLineCheck.id < 650){
                   evoList.push(pkmnEvoLine.chain.evolves_to[i].species.name);
@@ -68,7 +68,7 @@ export default function Home() {
                 if(pkmnEvoLine.chain.evolves_to[i].evolves_to.length > 0){
                   for(let j: number = 0; j < pkmnEvoLine.chain.evolves_to[i].evolves_to.length; j++){
 
-                    let evoLineCheck2 = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
+                    const evoLineCheck2 = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
                     if(evoLineCheck2 != undefined){
                       if(evoLineCheck2.id < 650){
                         evoList.push(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
@@ -86,7 +86,7 @@ export default function Home() {
 
         if(pkmnLocation != undefined){
           if(pkmnLocation.length > 0){
-            let locationList: string[] = [];
+            const locationList: string[] = [];
             for(let i: number = 0; i < pkmnLocation.length; i++){
               locationList.push(pkmnLocation[i].location_area.name);
             }

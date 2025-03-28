@@ -3,20 +3,20 @@
 import { createContext, useContext, useState } from "react";
 
 interface DataInterface {
-    name: string
-    setName: (pkmnName: string) => void
+    fav: string
+    setFav: (pkmnName: string) => void
 }
 
 const PkmnContext = createContext<DataInterface>({
-    name: '',
-    setName: (pkmnName) => ''
+    fav: '',
+    setFav: (pkmnName) => ''
 });
 
 export function AppWrapper({ children }: { children: React.ReactNode }){
-    const [name, setName] = useState('');
+    const [fav, setFav] = useState<string>('');
 
     return(
-        <PkmnContext.Provider value={ { name, setName } }>
+        <PkmnContext.Provider value={ { fav, setFav } }>
             {children}
         </PkmnContext.Provider>
     )

@@ -19,9 +19,9 @@ const GetEvolutionChain = async (url: string) =>{
 const GetEvolutionLine = async (pkmnId: number) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pkmnId}`);
     const data: GetEvolutionLineInterface = await response.json();
-    let evoChainUrl = data.evolution_chain.url;
+    const evoChainUrl = data.evolution_chain.url;
 
-    let evoChain = await GetEvolutionChain(evoChainUrl);
+    const evoChain = await GetEvolutionChain(evoChainUrl);
     console.log(evoChain.chain.species.name);
     return evoChain;
 }
@@ -33,6 +33,7 @@ const GetLocation = async (pkmnId: number) => {
         const data: GetLocationInterface[] = await response.json();
         return data;
     } catch (error) {
+        console.log(error);
         console.error("N/A");
     }
     

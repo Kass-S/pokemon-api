@@ -1,7 +1,7 @@
 const saveToFavorites = (pkmn: string) => {
     if (typeof window === 'undefined') return;
     
-    let pkmnArr: string[] = getFromFavorites();
+    const pkmnArr: string[] = getFromFavorites();
 
     if(!pkmnArr.includes(pkmn)){
         pkmnArr.push(pkmn);
@@ -12,7 +12,7 @@ const saveToFavorites = (pkmn: string) => {
 const getFromFavorites = () => {
     if (typeof window === 'undefined') return [];
 
-    let localStorageData = localStorage.getItem('Favorite');
+    const localStorageData = localStorage.getItem('Favorite');
 
     if(localStorageData == null){
         return [];
@@ -23,8 +23,8 @@ const getFromFavorites = () => {
 const removeFromFavorites = (pkmn: string) => {
     if (typeof window === 'undefined') return;
 
-    let localStorageData = getFromFavorites();
-    let pkmnIndex = localStorageData.indexOf(pkmn);
+    const localStorageData = getFromFavorites();
+    const pkmnIndex = localStorageData.indexOf(pkmn);
 
     localStorageData.splice(pkmnIndex, 1);
 
