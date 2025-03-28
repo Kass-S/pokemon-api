@@ -1,4 +1,3 @@
-import { usePkmncontext } from '@/Context/DataContext';
 import React from 'react'
 
 const Input = () => {
