@@ -1,16 +1,12 @@
 import { GetEvolutionChainInterface, GetEvolutionLineInterface, GetLocationInterface, GetPokemonInterface } from "@/interfaces/interfaces";
 
-const GetPokemon = async (userSearch: string) => {
+const GetPokemon = async (userSearch: string | number) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     if(!response.ok){
         alert("Invalid. Please enter a pokemon from gens 1-5");
     }else{
         const data: GetPokemonInterface = await response.json();
-        if(data.id >= 650){
-            alert("Invalid. Please enter a pokemon from gens 1-5");
-        }else{
-            return data;
-        }    
+        return data;   
     }
     
 }

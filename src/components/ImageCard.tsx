@@ -11,10 +11,10 @@ const ImageCard: React.FC<ImgCompInterface> = ({name, id, image}) => {
         <p className="flex justify-center text-3xl mt-10 mx-5">{name} - {id}</p>
 
         <div className="flex justify-between lg:mb-0  mb-10">
-            <i className="fa-solid fa-spray-can-sparkles fa-2xl mx-8 cursor-pointer mt-20" ></i>
+            <i className="fa-solid fa-spray-can-sparkles fa-2xl mx-8 cursor-pointer mt-20 p-1 bg-yellow-200" ></i>
             {/* style="color: #ffffff;" */}
     
-            <i className="fa-regular fa-heart fa-2xl mx-8 cursor-pointer mt-20"></i>
+            <i className="fa-regular fa-heart fa-2xl mx-8 cursor-pointer mt-20 p-1 bg-red-400"></i>
         </div>
     </div>
   )

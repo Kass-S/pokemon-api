@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 
 
 export default function Home() {
-  const [pkmnName, setPkmnName] = useState<string>('pikachu');
+  const [pkmnInput, setPkmnInput] = useState<string | number>('pikachu');
+  const [pkmnName, setPkmnName] = useState<string>('');
   const [pkmnId, setPkmnId] = useState<number>(25);
   const [pkmnImg, setPkmnImg] = useState<string>('image');
   const [pkmnTypes, setPkmnTypes] = useState<string>('types');
@@ -17,10 +18,10 @@ export default function Home() {
   const [pkmnLocation, setPkmnLocation] = useState<string>('location');
   
 
-  useEffect(()=>{
-    const AllPokemon = async () => {
-      const pkmnData = await GetPokemon(pkmnName);
-      if(pkmnData != undefined){
+  const AllPokemon = async () => {
+    const pkmnData = await GetPokemon(pkmnInput);
+    if(pkmnData != undefined){
+      if(pkmnData.id < 650){
         let typeList: string[] = [];
         let abilityList: string[] = [];
         let moveList: string[] = [];
@@ -29,7 +30,7 @@ export default function Home() {
         const pkmnEvoLine = await GetEvolutionLine(pkmnData.id);
         const pkmnLocation = await GetLocation(pkmnData.id);
 
-        setPkmnImg(pkmnData.name);
+        setPkmnName(pkmnData.name);
         setPkmnId(pkmnData.id);
         setPkmnImg(pkmnData.sprites.other["official-artwork"].front_default);
 
@@ -61,7 +62,7 @@ export default function Home() {
                 }
 
                 if(pkmnEvoLine.chain.evolves_to[i].evolves_to.length > 0){
-                  for(let j = 0; j < pkmnEvoLine.chain.evolves_to[i].evolves_to.length; j++){
+                  for(let j: number = 0; j < pkmnEvoLine.chain.evolves_to[i].evolves_to.length; j++){
 
                     let evoLineCheck2 = await GetPokemon(pkmnEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
                     if(evoLineCheck2 != undefined){
@@ -81,14 +82,20 @@ export default function Home() {
 
         if(pkmnLocation != undefined){
           if(pkmnLocation.length > 0){
-            pkmnLocation;
+            setPkmnLocation(pkmnLocation);
             
           }else{
             setPkmnLocation("N/A");
           }
         }
-      }  
-    }
+      }else{
+        alert("Invalid. Please enter a pokemon from gens 1-5");
+      }
+    }  
+  }
+
+  useEffect(()=>{
+    
     AllPokemon();
   },[])
   return (
@@ -97,15 +104,19 @@ export default function Home() {
       <div className="text-white grid grid-cols-1 gap-5 mx-10 sm:mx-20 xl:gap-x-20 lg:mx-30 lg:gap-x-10 lg:grid-cols-3 md:gap-x-0 md:mx-0 md:gap-10 md:grid-cols-4 mb-10">
         <div className="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4">
 
-          <button className="mx-2 cursor-pointer"><i className="fa-solid fa-magnifying-glass fa-sm " ></i></button>
-                   
+          <button className="mx-2 cursor-pointer p-2 bg-black" onClick={AllPokemon}><i className="fa-solid fa-magnifying-glass fa-sm " ></i></button>
+                  
           {/* style="color: #ffffff;"> */}
 
-          <input type="text" placeholder=" Search" className="bg-blue-500 rounded-md py-2 xl:pr-25 lg:pr-5 pr-5" onChange={(e) => setPkmnName(e.target.value)} />
+          <input type="text" placeholder=" Search" className="bg-blue-500 rounded-md py-2 xl:pr-25 lg:pr-5 pr-5" onChange={(e) => setPkmnInput(e.target.value)}  />
+          
 
-          <i className="fa-solid fa-shuffle fa-sm sm:ml-2 cursor-pointer"> </i>
+          <i className="fa-solid fa-shuffle fa-sm sm:ml-2 cursor-pointer p-2 bg-white" onClick={() => {
+            setPkmnInput(Math.floor(Math.random() * 649));
+            AllPokemon();
+          }}></i>
 
-          <button type="button" data-drawer-target="drawer-top-example" data-drawer-show="drawer-top-example" data-drawer-placement="top" aria-controls="drawer-top-example"><i className="fa-solid fa-heart fa-sm cursor-pointer"></i>
+          <button type="button" data-drawer-target="drawer-top-example" data-drawer-show="drawer-top-example" data-drawer-placement="top" aria-controls="drawer-top-example" className="p-2 bg-red-400"><i className="fa-solid fa-heart fa-sm cursor-pointer"></i>
           </button> 
         </div>
 

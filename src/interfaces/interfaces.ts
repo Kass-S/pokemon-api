@@ -43,7 +43,7 @@ export interface GetEvolutionLineInterface {
 
 export interface GetLocationInterface {
     location_area: {
-        name: string[]
+        name: string
     }
 }
 
