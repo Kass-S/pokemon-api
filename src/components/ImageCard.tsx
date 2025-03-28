@@ -1,5 +1,8 @@
 import {ImgCompInterface } from '@/interfaces/interfaces'
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSprayCanSparkles } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 const ImageCard: React.FC<ImgCompInterface> = ({name, id, image}) => {
   return (
@@ -11,10 +14,9 @@ const ImageCard: React.FC<ImgCompInterface> = ({name, id, image}) => {
         <p className="flex justify-center text-3xl mt-10 mx-5">{name} - {id}</p>
 
         <div className="flex justify-between lg:mb-0  mb-10">
-            <i className="fa-solid fa-spray-can-sparkles fa-2xl mx-8 cursor-pointer mt-20 p-1 bg-yellow-200" ></i>
-            {/* style="color: #ffffff;" */}
-    
-            <i className="fa-regular fa-heart fa-2xl mx-8 cursor-pointer mt-20 p-1 bg-red-400"></i>
+          <FontAwesomeIcon className="mx-8 cursor-pointer mt-10" icon={faSprayCanSparkles} size="2xl" style={{color: "#ffffff",}} />
+
+          <FontAwesomeIcon className="mx-8 cursor-pointer mt-10" icon={faHeart} size="2xl" style={{color: "#ffffff",}} />
         </div>
     </div>
   )

@@ -4,6 +4,8 @@ import EvolotionCard from "@/components/EvolotionCard";
 import ImageCard from "@/components/ImageCard";
 import { GetEvolutionLine, GetLocation, GetPokemon } from "@/lib/service";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faHeart, faShuffle } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Home() {
@@ -104,19 +106,17 @@ export default function Home() {
       <div className="text-white grid grid-cols-1 gap-5 mx-10 sm:mx-20 xl:gap-x-20 lg:mx-30 lg:gap-x-10 lg:grid-cols-3 md:gap-x-0 md:mx-0 md:gap-10 md:grid-cols-4 mb-10">
         <div className="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4">
 
-          <button className="mx-2 cursor-pointer p-2 bg-black" onClick={AllPokemon}><i className="fa-solid fa-magnifying-glass fa-sm " ></i></button>
-                  
-          {/* style="color: #ffffff;"> */}
+          <button className="mx-2 cursor-pointer" onClick={AllPokemon}><FontAwesomeIcon icon={faMagnifyingGlass} size="sm" style={{color: "#ffffff",}} /></button>
+          
 
           <input type="text" placeholder=" Search" className="bg-blue-500 rounded-md py-2 xl:pr-25 lg:pr-5 pr-5" onChange={(e) => setPkmnInput(e.target.value)}  />
           
-
-          <i className="fa-solid fa-shuffle fa-sm sm:ml-2 cursor-pointer p-2 bg-white" onClick={() => {
+          <FontAwesomeIcon className="sm:mx-2 cursor-pointer" icon={faShuffle} size="sm" style={{color: "#ffffff",}} onClick={() => {
             setPkmnInput(Math.floor(Math.random() * 649));
             AllPokemon();
-          }}></i>
+          }}/>
 
-          <button type="button" data-drawer-target="drawer-top-example" data-drawer-show="drawer-top-example" data-drawer-placement="top" aria-controls="drawer-top-example" className="p-2 bg-red-400"><i className="fa-solid fa-heart fa-sm cursor-pointer"></i>
+          <button type="button" data-drawer-target="drawer-top-example" data-drawer-show="drawer-top-example" data-drawer-placement="top" aria-controls="drawer-top-example" className="cursor-pointer"><FontAwesomeIcon icon={faHeart} size="sm" style={{color: "#ffffff",}} />
           </button> 
         </div>
 
