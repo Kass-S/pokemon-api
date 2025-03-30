@@ -137,10 +137,10 @@ export default function Home() {
           <h5 className="inline-flex items-center text-3xl text-white mb-5 mx-5">Favorites</h5>
             <div className="mb-6 ">
               {
-                getFromFavorites().map((pokemon:string, key:number) => {
+                getFromFavorites().map((pokemon:string) => {
                   return(
                     <div className="mx-2">
-                      <p className="text-lg text-white" key={key}>{pokemon}</p>
+                      <p className="text-lg text-white">{pokemon}</p>
                       <button onClick={() => removeFromFavorites(pokemon)} ><FontAwesomeIcon icon={faX} size="sm" style={{color: "#ffffff",}} /></button>
                     </div>
                 )})
