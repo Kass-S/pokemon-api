@@ -5,9 +5,10 @@ import ImageCard from "@/components/ImageCard";
 import { GetEvolutionLine, GetLocation, GetPokemon } from "@/lib/service";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faHeart, faShuffle, faX } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faHeart, faShuffle } from "@fortawesome/free-solid-svg-icons";
 import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
 //import { getFromFavorites, removeFromFavorites } from "@/lib/localStorage";
+//import { faX } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Home() {
