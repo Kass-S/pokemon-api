@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faHeart, faShuffle, faX } from "@fortawesome/free-solid-svg-icons";
 import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
-import { getFromFavorites, removeFromFavorites } from "@/lib/localStorage";
+//import { getFromFavorites, removeFromFavorites } from "@/lib/localStorage";
 
 
 export default function Home() {
@@ -136,7 +136,7 @@ export default function Home() {
           <DrawerItems>
           <h5 className="inline-flex items-center text-3xl text-white mb-5 mx-5">Favorites</h5>
             <div className="mb-6 ">
-              {
+              {/* {
                 getFromFavorites().map((pokemon:string, key: number) => {
                   return(
                     <div className="mx-2">
@@ -144,7 +144,7 @@ export default function Home() {
                       <button onClick={() => removeFromFavorites(pokemon)} ><FontAwesomeIcon icon={faX} size="sm" style={{color: "#ffffff",}} /></button>
                     </div>
                 )})
-              }
+              } */}
             </div>
           </DrawerItems>
         </Drawer>
