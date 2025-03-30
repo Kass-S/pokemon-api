@@ -3,12 +3,17 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSprayCanSparkles } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { saveToFavorites } from '@/lib/localStorage';
 
 const ImageCard: React.FC<ImgCompInterface> = ({name, id, image, shinyImage}) => {
   const [shinyBool, setShinyBool] = useState<boolean>(false);
 
   const handleSwitch = () => {
     setShinyBool(!shinyBool);
+  }
+
+  const Favorite = () => {
+    saveToFavorites(name);
   }
   
   return (
@@ -24,7 +29,7 @@ const ImageCard: React.FC<ImgCompInterface> = ({name, id, image, shinyImage}) =>
         <div className="flex justify-between lg:mb-0  mb-10">
           <FontAwesomeIcon className="mx-8 cursor-pointer mt-10" icon={faSprayCanSparkles} size="2xl" style={{color: "#ffffff",}} onClick={handleSwitch} />
 
-          <FontAwesomeIcon className="mx-8 cursor-pointer mt-10" icon={faHeart} size="2xl" style={{color: "#ffffff",}} />
+          <FontAwesomeIcon className="mx-8 cursor-pointer mt-10" icon={faHeart} size="2xl" style={{color: "#ffffff",}} onClick={Favorite} />
         </div>
     </div>
   )

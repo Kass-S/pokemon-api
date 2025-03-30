@@ -6,6 +6,7 @@ import { GetEvolutionLine, GetLocation, GetPokemon } from "@/lib/service";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faHeart, faShuffle } from "@fortawesome/free-solid-svg-icons";
+import { Button, Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
 
 
 export default function Home() {
@@ -20,6 +21,10 @@ export default function Home() {
   const [pkmnMoves, setPkmnMoves] = useState<string>('moves');
   const [pkmnEvoLine, setPkmnEvoLine] = useState<string>('evolution line');
   const [pkmnLocation, setPkmnLocation] = useState<string>('location');
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => setIsOpen(false);
   
 
   const AllPokemon = async () => {
@@ -122,22 +127,20 @@ export default function Home() {
   }, [random])
   return (
     <div className="bg-[url(/assets/bgPkmn.png)] bg-no-repeat bg-cover min-h-screen min-w-screen float-left font-imprima">
-      {/* <!-- drawer component --> */}
-      {/* <div id="drawer-top-example" className="fixed top-0 left-0 right-0 z-40 w-full p-4 transition-transform -translate-y-full bg-blue-800 border-b-blue-950 border-b-4 drop-shadow-lg text-white" tabIndex={-1} aria-labelledby="drawer-top-label">
-        <h5 id="drawer-top-label" className="inline-flex items-center text-3xl text-white mb-5 mx-5">Favorites</h5>
-        <button id="exitFavorites" type="button" data-drawer-hide="drawer-top-example" aria-controls="drawer-top-example" className="text-white bg-transparen hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center cursor-pointer" >
-          <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-          </svg>
-          <span className="sr-only">Close menu</span>
-        </button>
-        <p id="favoritesList" className="mt-5"></p>
-      </div> */}
-
+      
       <div className="text-white grid grid-cols-1 gap-5 mx-10 sm:mx-20 xl:gap-x-20 lg:mx-30 lg:gap-x-10 lg:grid-cols-3 md:gap-x-0 md:mx-0 md:gap-10 md:grid-cols-4 mb-10">
-        <div className="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4">
 
-          
+        <Drawer className="bg-blue-800 border-blue-950 border-4 drop-shadow-lg" open={isOpen} onClose={handleClose} position="top">
+        <DrawerHeader  />
+          <DrawerItems>
+          <h5 className="inline-flex items-center text-3xl text-white mb-5 mx-5">Favorites</h5>
+            <p className="mb-6 text-lg text-white">
+               
+            </p>
+          </DrawerItems>
+        </Drawer>
+
+        <div className="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4">
 
           <button className="mx-2 cursor-pointer" onClick={AllPokemon}><FontAwesomeIcon icon={faMagnifyingGlass} size="sm" style={{color: "#ffffff",}} /></button>
           
@@ -146,8 +149,9 @@ export default function Home() {
           
           <FontAwesomeIcon className="mx-2 cursor-pointer" icon={faShuffle} size="sm" style={{color: "#ffffff",}} onClick={RandomPokemon}/>
 
-          <button type="button" data-drawer-target="drawer-top-example" data-drawer-show="drawer-top-example" data-drawer-placement="top" aria-controls="drawer-top-example" className="cursor-pointer"><FontAwesomeIcon icon={faHeart} size="sm" style={{color: "#ffffff",}} />
-          </button> 
+          <button className="max-w-2 cursor-pointer" onClick={() => setIsOpen(true)}><FontAwesomeIcon icon={faHeart} size="sm" style={{color: "#ffffff",}} /></button>
+          
+          
         </div>
 
         <div className="lg:row-[2] lg:col-[1] md:col-start-2 md:col-end-4 row-[4]">
