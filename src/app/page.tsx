@@ -5,8 +5,9 @@ import ImageCard from "@/components/ImageCard";
 import { GetEvolutionLine, GetLocation, GetPokemon } from "@/lib/service";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faHeart, faShuffle } from "@fortawesome/free-solid-svg-icons";
-import { Button, Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
+import { faMagnifyingGlass, faHeart, faShuffle, faX } from "@fortawesome/free-solid-svg-icons";
+import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
+import { getFromFavorites, removeFromFavorites } from "@/lib/localStorage";
 
 
 export default function Home() {
@@ -134,9 +135,17 @@ export default function Home() {
         <DrawerHeader  />
           <DrawerItems>
           <h5 className="inline-flex items-center text-3xl text-white mb-5 mx-5">Favorites</h5>
-            <p className="mb-6 text-lg text-white">
-               
-            </p>
+            <div className="mb-6 ">
+              {
+                getFromFavorites().map((pokemon:string, key:number) => {
+                  return(
+                    <div className="mx-2">
+                      <p className="text-lg text-white" key={key}>{pokemon}</p>
+                      <button onClick={() => removeFromFavorites(pokemon)} ><FontAwesomeIcon icon={faX} size="sm" style={{color: "#ffffff",}} /></button>
+                    </div>
+                )})
+              }
+            </div>
           </DrawerItems>
         </Drawer>
 
@@ -150,7 +159,6 @@ export default function Home() {
           <FontAwesomeIcon className="mx-2 cursor-pointer" icon={faShuffle} size="sm" style={{color: "#ffffff",}} onClick={RandomPokemon}/>
 
           <button className="max-w-2 cursor-pointer" onClick={() => setIsOpen(true)}><FontAwesomeIcon icon={faHeart} size="sm" style={{color: "#ffffff",}} /></button>
-          
           
         </div>
 
