@@ -140,8 +140,8 @@ export default function Home() {
               {/* {
                 getFromFavorites().map((pokemon:string, key: number) => {
                   return(
-                    <div className="mx-2">
-                      <p className="text-lg text-white" key={key}>{pokemon}</p>
+                    <div className="mx-2" key={key}>
+                      <p className="text-lg text-white" >{pokemon}</p>
                       <button onClick={() => removeFromFavorites(pokemon)} ><FontAwesomeIcon icon={faX} size="sm" style={{color: "#ffffff",}} /></button>
                     </div>
                 )})
